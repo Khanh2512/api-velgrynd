@@ -645,7 +645,7 @@ router.get('/asupan', async (req, res) => {
             await fs.unlinkSync(__path + '/database/waifu.png')
         })
         router.get('/randomimage/du', async (req, res, next) => {
-	        let waif = (await axios.get(`https://raw.githubusercontent.com/Khanh2512/endak-tau/main/du`)).data
+	        let waif = (await axios.get(`https://raw.githubusercontent.com/Khanh2512/endak-tau/main/du.json`)).data
             let result = waif[Math.floor(Math.random() * (waif.length))]
 	        let data = await getBuffer(result)
             await fs.writeFileSync(__path +'/database/waifu.png', data)
