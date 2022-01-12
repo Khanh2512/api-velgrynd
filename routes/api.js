@@ -662,6 +662,15 @@ router.get('/asupan', async (req, res) => {
             await sleep(3000)
             await fs.unlinkSync(__path + '/database/waifu.png')
         })
+        router.get('/randomimage/fox', async (req, res, next) => {
+	        let waif = (await axios.get(`https://raw.githubusercontent.com/Khanh2512/endak-tau/main/fox.json`)).data
+            let result = waif[Math.floor(Math.random() * (waif.length))]
+	        let data = await getBuffer(result)
+            await fs.writeFileSync(__path +'/database/waifu.png', data)
+            await res.sendFile(__path +'/database/waifu.png')
+            await sleep(3000)
+            await fs.unlinkSync(__path + '/database/waifu.png')
+        })
      
  router.use(function (req, res) {
      res.status(404)
